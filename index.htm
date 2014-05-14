@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>zdk-tabs test page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="/css/font.css" rel="stylesheet">
+	<script src="/bower_components/platform/platform.js"></script>
+	<link rel="import" href="zdk-tabs.htm">
+</head>
+<body>
+	<style>
+	* { 
+		border-box: box-sizing;
+		-moz-box-sizing:border-box;
+	}
+	body {
+		font-family: "Oxygen",Verdana,Helvetica;
+		font-size: 16px;
+	}
+	zdk-tabs {
+		border:1px solid black;
+	}
+	zdk-tab {
+		padding:5px 10px;
+		background: GhostWhite;
+		border: 1px solid Gainsboro;
+		height: 200px;
+		overflow: auto;
+	}
+	pre {
+		margin: 5px 15px;
+		background: aliceblue;
+		padding: 0px 20px;
+		overflow: auto;
+	}
+	button {
+		background: dodgerblue;
+		color: white;
+		padding: 5px 10px;
+		font-size: 1em;
+		border: 1px solid darkblue;
+		border-radius: 5px;
+	}
+	button:hover {
+		background:rgb(63, 104, 145);
+	}
+	</style>
+	<h1>zdk-tabs and zdk-tab components</h1>
+    
+    <p>zdk-tabs and zdk-tab are two basic web components based on the polymer project.</p>
+    <p>To use these components just type :</p>
+    <pre><code>
+bower install zdk-tabs -S
+    </code></pre>
+    <p>Then in the header of your html file add the following lines to import the components :</p>
+    <pre><code>
+&lt;script src="/bower_components/platform/platform.js"&gt;&lt;/script&gt;
+&lt;link rel="import" href="/bower_components/zdk-tabs/zdk-tabs.htm"&gt;
+    </code></pre>
+
+    <p>Then in the body of the html file :</p>
+
+    <pre><code>
+&lt;zdk-tabs>
+    &lt;zdk-tab heading="tab 1">
+        &lt;p&gt;Tab 1&lt;/p&gt;
+        &lt;p&gt;First tab is active by default&lt;/p&gt;
+    &lt;/zdk-tab&gt;
+    &lt;zdk-tab heading="tab 2"&gt;
+        &lt;p&gt;Tab 2 content&lt;/p&gt;
+        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat&lt;/p&gt;
+    &lt;/zdk-tab&gt;
+&lt;/zdk-tabs&gt;
+    </code></pre>
+    
+    <h2>Demo</h2>
+    
+	<zdk-tabs>
+		<zdk-tab heading="tab 1">
+            <p>Tab 1</p>
+            <p>First tab is active by default</p>
+		</zdk-tab>
+		<zdk-tab heading="tab 2">
+            <p>Tab 2 content</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+		</zdk-tab>
+	</zdk-tabs>
+	<div>
+		<button onclick="addTab()">add a new tab</button>
+	</div>
+	
+	<script>
+	function addTab() {
+		var newTab = document.createElement("zdk-tab");
+		var tabNum = document.querySelectorAll("zdk-tab").length + 1
+		newTab.setAttribute("heading","tab "+tabNum);
+		var contentDiv = document.createElement("div");
+		var content = "<p>Tab "+tabNum+"</p>";
+		for(var n=0;n<tabNum;n++) {
+			content += "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>";
+		}
+        newTab.innerHTML = content;
+		document.querySelector("zdk-tabs").appendChild(newTab);
+	}
+	</script>
+    
+    <p>You can add tabs on the fly programming, component updates itself.</p>
+<pre><code>
+function addTab() {
+    var newTab = document.createElement("zdk-tab");
+    var tabNum = document.querySelectorAll("zdk-tab").length + 1
+    newTab.setAttribute("heading","tab "+tabNum);
+    var content = "&lt;p&gt;Tab "+tabNum+"&lt;/p&gt;";
+    for(var n=0;n &lt; tabNum;n++) {
+        content += "&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat&lt;/p&gt;";
+    }
+    newTab.innerHTML = content;
+    document.querySelector("zdk-tabs").appendChild(newTab);
+}
+</code></pre>
+
+<p>The "zdk-tabs" component publishes the "selected" attribute in read/write. This attribute allows to read the index of the selected tab (read) or select a given tab (write).</p>
+
+<pre><code>
+var tabs = document.querySelector("zdk-tabs");
+console.log("the selected tab is ",tabs.selected);
+tabs.selected = 2; // select the third tab
+</code></pre>
+<p>When a given tab is selected by programming, the component is updated auto-magically.</p>
+
+<p>Creating a Tab is very simple as shown in the addTab function above. A tab is a "zdk-tab" tag with the property "heading" for the label.</p>
+
+<p>Writing the "heading" property, automagically update the tab component.</p>
+
+
+</body>
+</html>

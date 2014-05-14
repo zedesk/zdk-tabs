@@ -1,0 +1,27 @@
+{
+  "name": "zdk-tabs",
+  "version": "0.0.1",
+  "authors": [
+    "Fabrice <fabrice.lecoz@zedesk.net>"
+  ],
+  "description": "A simple tabs component",
+  "keywords": [
+    "tab",
+    "component",
+    "polymer",
+    "web-component"
+  ],
+  "dependencies": {
+    "platform": "polymer/platform#~0.2.4",
+    "polymer": "Polymer/polymer#0.2.4",
+    "core-selector": "polymer/core-selector#~0.2.4"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

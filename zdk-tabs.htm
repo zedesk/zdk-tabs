@@ -1,0 +1,57 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-selector/core-selector.html">
+
+<polymer-element name="zdk-tab" attributes="heading" noscript>
+	<template>
+		<style>
+			:host {
+				display: none;
+			}
+			:host(.selected) {
+				display: block;
+			}
+		</style>
+		<content></content>
+	</template>
+</polymer-element>
+
+<polymer-element name="zdk-tabs" attributes="selected">
+	<template>
+		<link rel="stylesheet" href="zdk-tabs.css">
+		<style>
+		:host {
+			display:block;
+		}
+		</style>
+		<div id="container">
+			<div id="tabstrip">
+				<core-selector selected="{{selected}}" selectedClass="selected">
+					<template repeat="{{tab in tabs}}">
+						<span>{{tab.heading}}</span>
+					</template>
+				</core-selector>
+			</div>
+			<div id="contents">
+				<core-selector selected="{{selected}}" selectedClass="selected">
+					<content select="zdk-tab"></content>
+				</core-selector>
+			</div>
+		</div>
+	</template>
+	<script>
+	Polymer('zdk-tabs', {
+		css: '',
+		selected : 0,   // the first tab is selected by default
+		domReady: function() {
+			this.updatePanels();
+		},
+		updatePanels: function() {
+			this.tabs = Array.prototype.slice.call(
+				this.querySelectorAll("zdk-tab")
+			);
+			
+			this.onMutation(this, this.updatePanels);
+		}
+	});
+	</script>
+</polymer-element>

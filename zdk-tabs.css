@@ -1,0 +1,18 @@
+div#tabstrip {
+	line-height:40px;
+}
+
+div#tabstrip span {
+	min-width: 150px;
+	display: inline-block;
+	text-align: center;
+	font-size: 1.2em;
+	background: gainsboro;
+	border: 1px solid gainsboro;
+	border-bottom: none;
+}
+
+div#tabstrip span.selected {
+	font-weight: bold;
+	background: white;
+}
